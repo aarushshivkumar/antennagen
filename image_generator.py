@@ -1,4 +1,3 @@
-# image_generator.py
 import os
 import json
 import time
