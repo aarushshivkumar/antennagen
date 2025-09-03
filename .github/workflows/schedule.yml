@@ -34,7 +34,7 @@ jobs:
       run: python image_generator.py
       
     - name: Upload generated images
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: generated-images-${{ github.run_number }}
         path: output/
