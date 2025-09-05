@@ -131,7 +131,7 @@ def generate_with_key(client, key_name, contents, output_dir, start_index, max_i
                 break
                 
             # If too many consecutive errors, assume key is exhausted
-            if consecutive_errors >= 5:
+            if consecutive_errors >= 10:
                 log_message(f"Key {key_name} failed {consecutive_errors} times, assuming exhausted")
                 break
                 
