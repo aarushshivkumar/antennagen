@@ -64,7 +64,7 @@ jobs:
         
     - name: Upload generated images
       if: always()
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: generated-images-${{ github.run_number }}
         path: output/
@@ -86,7 +86,7 @@ jobs:
       
     - name: Download generated images (if generation ran)
       if: needs.image-generation.result == 'success'
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: generated-images-${{ github.run_number }}
         path: output/
@@ -181,7 +181,7 @@ jobs:
         
     - name: Upload detection results
       if: steps.check_images.outputs.images_found == 'true'
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: detection-results-${{ github.run_number }}
         path: |
@@ -208,7 +208,7 @@ jobs:
       uses: actions/checkout@v4
       
     - name: Download all results
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         path: artifacts/
       continue-on-error: true
@@ -246,7 +246,7 @@ jobs:
         cat final_output/summary.txt
         
     - name: Upload final combined results
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: final-results-${{ github.run_number }}
         path: final_output/
