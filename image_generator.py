@@ -1,4 +1,3 @@
-# image_generator.py
 import os
 import json
 import time
@@ -132,7 +131,7 @@ def generate_with_key(client, key_name, contents, output_dir, start_index, max_i
                 break
                 
             # If too many consecutive errors, assume key is exhausted
-            if consecutive_errors >= 5:
+            if consecutive_errors >= 10:
                 log_message(f"Key {key_name} failed {consecutive_errors} times, assuming exhausted")
                 break
                 
@@ -160,8 +159,9 @@ def main():
     progress = load_progress()
     
     # Image generation prompt
-    contents = """Camera mounted on top of cellular communication tower looking straight down, view from tower peak showing dense cluster of antennas and equipment directly below, prominent electrical junction box or equipment cabinet visible on tower structure, downward perspective from tower summit revealing complex array of telecommunications equipment, mix of large white panel antennas and smaller directional antennas visible from above, metal wire management box or control cabinet prominently featured among the equipment, some antennas partially obscured by equipment at higher levels and by the wire box, overlapping antenna arrangements with upper equipment and junction box casting shadows on lower antennas, antennas at various orientations showing tops, sides, and angled mounting positions, layered installation with natural occlusion from tower-top viewpoint including wire box obstruction, white and gray colored antenna panels and cylindrical equipment, electrical cabinet or junction box with visible cable connections, complex antenna clustering viewed from directly overhead on tower structure, residential buildings and green vegetation visible far below in background, realistic photography from tower peak position, high detail, equipment arranged in tiers descending down the tower"""
-    
+    #contents = """Camera mounted on top of cellular communication tower looking straight down, view from tower peak showing dense cluster of antennas and equipment directly below, prominent electrical junction box or equipment cabinet visible on tower structure, downward perspective from tower summit revealing complex array of telecommunications equipment, mix of large white panel antennas and smaller directional antennas visible from above, metal wire management box or control cabinet prominently featured among the equipment, some antennas partially obscured by equipment at higher levels and by the wire box, overlapping antenna arrangements with upper equipment and junction box casting shadows on lower antennas, antennas at various orientations showing tops, sides, and angled mounting positions, layered installation with natural occlusion from tower-top viewpoint including wire box obstruction, white and gray colored antenna panels and cylindrical equipment, electrical cabinet or junction box with visible cable connections, complex antenna clustering viewed from directly overhead on tower structure, residential buildings and green vegetation visible far below in background, realistic photography from tower peak position, high detail, equipment arranged in tiers descending down the tower"""
+    contents = """An extreme aerial view, looking sharply down onto a segment of a telecom tower, absolutely packed with exceptionally small antennas. The focus is tightly on these minuscule components. The image should feature a high density of antenna types that are incredibly small relative to the tower's structure. Specifically, include tiny rectangular panel antennas, appearing no larger than a smartphone, and tiny radio dish antennas, roughly the size of a coffee saucer. The intricate metalwork and cabling of the tower should be visible, creating a backdrop for these numerous, minute devices. The background should show a heavily blurred impression of the ground far below, emphasizing the extreme height and making the antennas appear like tiny technological clusters."""
+
     total_images_start = len(fnmatch.filter(os.listdir(output_dir), '*.jpg'))
     log_message(f"Starting with {total_images_start} existing images")
     
@@ -187,7 +187,7 @@ def main():
             
             # Generate images with this key
             images_generated = generate_with_key(
-                client, key_name, contents, output_dir, total_images_start, max_images_per_key
+                client, key_name, contents, output_dir, total_images_start
             )
             
             # Update progress
