@@ -121,12 +121,6 @@ jobs:
       with:
         python-version: '3.11'
         
-    - name: Install system dependencies
-      if: steps.check_images.outputs.images_found == 'true'
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y libgl1-mesa-glx libglib2.0-0 libsm6 libxext6 libxrender-dev libgomp1
-        
     - name: Install Python dependencies for detection
       if: steps.check_images.outputs.images_found == 'true'
       run: |
