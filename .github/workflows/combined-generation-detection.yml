@@ -124,7 +124,7 @@ jobs:
     - name: Install Python dependencies for detection
       if: steps.check_images.outputs.images_found == 'true'
       run: |
-        pip install opencv-python sahi ultralytics torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+        pip3 install opencv-python sahi ultralytics torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
         
     - name: Download model file
       if: steps.check_images.outputs.images_found == 'true'
